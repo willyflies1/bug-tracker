@@ -619,13 +619,22 @@ section {
 .new-bug .new-bug-form button[type="submit"]:hover {
   background: #5faee3;
 }
+
+/*--------------------------------------------------------------
+# Profile
+--------------------------------------------------------------*/
+#create-project .container {
+    padding: 30px 20px;
+}
+
+
 /*--------------------------------------------------------------
 # Profile
 --------------------------------------------------------------*/
 #profile .container {
     padding: 30px 20px;
 }
-
+/*
 #user-title {
     text-align: left;
 }
@@ -633,7 +642,7 @@ section {
 .profile .section-title h2::after {
   align=left;
 }
-
+*/
 .profile .icon-box {
   text-align: center;
   padding: 30px 20px;

@@ -46,6 +46,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="{{ 'active' if active_window=='home' }}"><a href="{{ url_for('home') }}">Home</a></li>
+          <li class="{{ 'active' if active_window=='profile' }}"><a href="{{ url_for('profile') }}">Profile</a></li>
           <li class="{{ 'active' if active_window=='login' }}"><a href="{{ url_for('twitter_login') }}">Login</a></li>
           <li><a href="#services">Services</a></li>
           <li class="drop-down {{ 'active' if active_window=='bug-tracker' }}"><a href="{{ url_for('bug_tracker') }}">Bug Tracker</a>

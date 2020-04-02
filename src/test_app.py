@@ -11,7 +11,7 @@ class ExceptionTestCase(unittest.TestCase):
         bug = Bug('First Bug', 'This is a sample bug', 10)
 
         self.assertIsInstance(bug, Bug)
-        self.assertEqual(bug.project, 'First Bug', msg='Title does not work.')
+        self.assertEqual(bug.project_id, 'First Bug', msg='Title does not work.')
         self.assertEqual(bug.description, 'This is a sample bug', msg='Description is not working.')
         self.assertEqual(bug.id, 10, msg='Id not working.')
 

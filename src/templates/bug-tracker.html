@@ -2,23 +2,14 @@
 {% block content %}
 
 <section id="bug-tracker" class="bug-tracker">
-  <div class="section-title">
-    <h2>Bug Tracker</h2>
-    <p>This page will show a grid of bugs or issues that are being tracked.</p>
+  <div class="container">
+    <div class="section-title">
+      <h2>Bug Tracker</h2>
+      <p>This page will show a grid of bugs or issues that are being tracked.</p>
+    </div>
   </div>
-
   <div class="container" id="grid-container">
     <div class="row">
-      <div class="col-md-3">
-        <h2 align="center">Submit a Bug</h2>
-        <div align="center">
-          <a href="{{ url_for('new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
-        </div>
-        <h2 align="center">Submit a Solution</h2>
-        <div align="center">
-          <a href="{{ url_for('solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
-        </div>
-      </div>
       <div class="col-md-9" id="bug-grid">
         <div class="row">
           <div class="col-md-1">ID</div>
@@ -28,16 +19,33 @@
           <div class="col-md-1">Date Created</div>
           <div class="col-md-1">Date Solved</div>
         </div>
-        {% for bug in bugs %}
-        <div class="row">
-          <div class="col-md-1">{{ bug[0] }}</div>
-          <div class="col-md-1">{{ bug[1] }}</div>
-          <div class="col-md-4">{{ bug[2] }}</div>
-          <div class="col-md-4">{{ bug[3] }}</div>
-          <div class="col-md-1">{{ bug[4] | datetimefilter }}</div>
-          <div class="col-md-1">{{ bug[5] | datetimefilter if bug[5] else bug[5] }}</div>
+<!--        TODO: After adding 'create a project' for a user, make this functional -->
+<!--        {% for bug in bugs %}-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-1">{{ bug[0] }}</div>-->
+<!--          <div class="col-md-1">{{ bug[1] }}</div>-->
+<!--          <div class="col-md-4">{{ bug[2] }}</div>-->
+<!--          <div class="col-md-4">{{ bug[3] }}</div>-->
+<!--          <div class="col-md-1">{{ bug[4] | datetimefilter }}</div>-->
+<!--          <div class="col-md-1">{{ bug[5] | datetimefilter if bug[5] else bug[5] }}</div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+      </div>
+    </div>
+  </div>
+  <div class="container" id="submit-a-bug">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-3">
+        <h2 align="center">Submit a Bug</h2>
+        <div align="center">
+          <a href="{{ url_for('new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
         </div>
-        {% endfor %}
+      </div>
+      <div class="col-md-3">
+        <h2 align="center">Submit a Solution</h2>
+        <div align="center">
+          <a href="{{ url_for('solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+        </div>
       </div>
     </div>
   </div>
