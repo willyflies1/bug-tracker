@@ -5,14 +5,42 @@
   <div class="container">
     <div class="section-title" id="user-title">
       <h2>User: {{  user.screen_name  }}</h2>
-      <p>Website Design and offer a few self made applications</p>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-md-6">
+          <p>This is your profile. Your User Name is the same as your screen name from Twitter.
+          Later we will implement a Login local to the website, but keeping your information
+            safe is more important at the moment. Currently using the Twitter OAuth to keep a functional Login.</p>
+        </div>
+      </div>
     </div>
 
-    <form action="{{ url_for('search') }}">
-        <label for="q">Twitter Search</label>
-        <input type="text" name="q" id="q" placeholder="Your twitter search">
-        <button type="submit">Search</button>
-    </form>
+    <div class="container" id="submit-a-bug">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-3">
+        <h2 align="center">Create a Project</h2>
+        <div align="center">
+          <a href="{{ url_for('create_project') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Lets go</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2 align="center">Submit a Bug</h2>
+        <div align="center">
+          <a href="{{ url_for('new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2 align="center">Submit a Solution</h2>
+        <div align="center">
+          <a href="{{ url_for('solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--    <form action="{{ url_for('search') }}">-->
+<!--        <label for="q">Twitter Search</label>-->
+<!--        <input type="text" name="q" id="q" placeholder="Your twitter search">-->
+<!--        <button type="submit">Search</button>-->
+<!--    </form>-->
   </div>
 </section>
 

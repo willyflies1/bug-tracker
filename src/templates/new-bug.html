@@ -2,8 +2,8 @@
 {% block content %}
 <section id="new-bug" class="new-bug">
     <div class="section-title">
-        <h2>What seems to be the issue?</h2>
-        <p>Here you can enter a bug and submit it for our team to solve. Thanks for the feedback!</p>
+        <h2>Bug Tracker</h2>
+        <p>Here you can enter a bug and submit it for your teams project.</p>
     </div>
     <div class="container">
         <div class="row mt-5 justify-content-center">
@@ -11,12 +11,45 @@
             <form action="{{ url_for('post_bug') }}" role="form" class="new-bug-form">
               <div class="form-row">
                 <div class="col-md-4 form-group">
-                  <input type="text" name="project" class="form-control" id="project" placeholder="Project Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <label for="project_name">Project name</label>
+<!--                  TODO: Project_name will need to be a list that only pulls valid projects-->
+                  <input type="text" name="project" class="form-control" id="project_name" placeholder="Project Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-4 form-group">
+                  <label for="issue_type">Type of Issue</label>
+                  <select class="custom-select" id="issue_type" name="issue_type">
+                    <option selected>Types</option>
+                    <option>Task</option>
+                    <option>Bug</option>
+                    <option>Recommendation</option>
+                  </select>
+                </div>
+                <div class="col-md-4 form-group">
+<!--                  TODO: Remove the priority field when issue_type=Recommendation-->
+                  <label for="priority">Priority Rank</label>
+                  <select class="custom-select" id="priority" name="priority">
+                    <option selected>Rank between 1-5</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-12 form-group">
+                  <label for="summary">Summary</label>
+                  <input type="text" name="summary" class="form-control" id="summary"
+                         placeholder="Summarize your bug/task/recommendation" data-rule="minlen:4"
+                         data-msg="Please enter at least 4 chars" />
                   <div class="validate"></div>
                 </div>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Description of Bug"></textarea>
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
                 <div class="validate"></div>
               </div>
               <div class="mb-3">

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="create-project" class="create-project">
+	<div class="container">
+		<div class="section-title" id="create-project-title">
+			<h2>Create a Project</h2>
+		</div>
+	</div>
+	<div class="container">
+<!--		TODO: form that takes these inputs(user_name, project_name, private)-->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <form action="{{ url_for('save_project') }}" role="form" class="create-project-form">
+          <div class="form-row justify-content-center">
+            <div class="col-md-4 form-group">
+              <label for="project_name">Project name</label>
+<!--                  TODO: Project_name will need to be a list that only pulls valid projects-->
+              <input type="text" name="project_name" class="form-control" id="project_name" placeholder="Project Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group">
+              <label for="private">Public or Private</label>
+              <select class="custom-select" id="private" name="private">
+                <option selected>Privacy</option>
+                <option>Private</option>
+                <option>Public</option>
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+	          <div class="col-md-6 form-group">
+	            <label for="description">Description</label>
+	            <textarea class="form-control" name="description" id="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder=""></textarea>
+	            <div class="validate"></div>
+	          </div>
+          </div>
+          <div class="text-center"><button type="submit">Send Message</button></div>
+        </form>
+      </div>
+    </div>
+	</div>
+</section>
+
+{% endblock %}
