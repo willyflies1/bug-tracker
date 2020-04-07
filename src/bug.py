@@ -27,8 +27,9 @@ class Bug:
     # Private to this class
     # Param: project_name
     # Return: (int) project_id
-    @staticmethod
-    def __get_project_id(self, project_name):
+    # TODO: change bug __init__ to have project name instead of id and make this method private
+    @classmethod
+    def get_project_id(cls, project_name):
         project_id = Project.get_id_from_name(project_name)
         if project_id:
             return project_id
@@ -37,7 +38,7 @@ class Bug:
     @classmethod
     def get_bugs_by_user(cls, user_name):
         projects = Project.get_projects_for_user(user_name=user_name)               # projects = ['p1', 'p2',...]
-        project_ids = [cls.__get_project_id(cls, project) for project in projects]  # project_ids = [id=4, id=5]
+        project_ids = [cls.get_project_id(project) for project in projects]  # project_ids = [id=4, id=5]
         bugs = {}
         for p_id in project_ids:
             bugs[Project.get_name_from_id(p_id)] = (cls.load_bugs_with_project_id(p_id))
