@@ -9,6 +9,15 @@
     </div>
   </div>
   <div class="container" id="grid-container">
+    <div class="row-md-4 form-group" id="project-grid">
+      <label for="project">Choose a Project</label>
+      <select class="custom-select" id="project" name="project">
+        <option selected>Project</option>
+        {% for project in bugs.keys() %}
+          <option>{{ project }}</option>
+        {% endfor %}
+      </select>
+    </div>
     <div class="row">
       <div class="col-md-9" id="bug-grid">
         <div class="row">
@@ -20,16 +29,19 @@
           <div class="col-md-1">Date Solved</div>
         </div>
 <!--        TODO: After adding 'create a project' for a user, make this functional -->
-<!--        {% for bug in bugs %}-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-1">{{ bug[0] }}</div>-->
-<!--          <div class="col-md-1">{{ bug[1] }}</div>-->
-<!--          <div class="col-md-4">{{ bug[2] }}</div>-->
-<!--          <div class="col-md-4">{{ bug[3] }}</div>-->
-<!--          <div class="col-md-1">{{ bug[4] | datetimefilter }}</div>-->
-<!--          <div class="col-md-1">{{ bug[5] | datetimefilter if bug[5] else bug[5] }}</div>-->
-<!--        </div>-->
-<!--        {% endfor %}-->
+<!--        (id[0], project_id[2], issue_type, summary, description[4], priority, created_on[7], solution[6], answered_on[8])-->
+        {% for project in bugs %}
+          {% for bug in bugs[project] %}
+          <div class="row">
+            <div class="col-md-1">ID</div>
+            <div class="col-md-1">{{ project }}</div>
+            <div class="col-md-4">Description</div>
+            <div class="col-md-4">Solution</div>
+            <div class="col-md-1">Date Created</div>
+            <div class="col-md-1">Date Solved</div>
+          </div>
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </div>

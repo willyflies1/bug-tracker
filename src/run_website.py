@@ -1,6 +1,7 @@
 # Python standard libraries
 import json
 import os
+from datetime import timedelta
 
 # Third-party libraries
 import login as login
@@ -34,6 +35,11 @@ Database.initialise(database="learning", host="localhost", user="postgres", pass
 
 
 @app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=5)
+
+@app.before_request
 def load_user():
     """
     No, g is not an object to hang session data on. g data is not persisted between requests.
@@ -46,8 +52,13 @@ def load_user():
     cycle. g can be set up during before_request hooks, is still available during the
     teardown_request phase and once the request is done and sent out to the client, g is cleared.
     """
+    print('load_user()-----------------------------')
+    print('if screen_name in session:')
     if 'screen_name' in session:
+        print('screen_name: {}, is in session'.format(session['screen_name']))
         g.user = User.load_db_by_screen_name(session['screen_name'])
+        print('g.user.screen_name: {}'.format(g.user.screen_name))
+    print('--------------------screen_name was not in session')
 
 
 def date_time_filter(value, format="%m/%d/%y"):
@@ -160,9 +171,24 @@ def bug_tracker():
 
     # TODO: possibly use WTF forms to display form. If user has projects -> display projects and bugs
     # TODO: If user does not have projects -> "Would you like to add a project?"
+    """
+    <div class="row">
+              <div class="col-md-1">{{ bug[0] }}</div>
+              <div class="col-md-1">{{ project }}</div>
+              <div class="col-md-4">{{ bug[4] }}</div>
+              <div class="col-md-4">{{ bug[6] }}</div>
+              <div class="col-md-1">{{ bug[7] | datetimefilter }}</div>
+              <div class="col-md-1">{{ bug[8] | datetimefilter if bug[8] else bug[8] }}</div>
+            </div>
+    
+    """
+
+    user_name = g.user.screen_name
+    if user_name:
+        bugs = Bug.get_bugs_by_user(user_name=user_name)
     # bugs = Bug.load_bug_from_db()
 
-    return render_template('bug-tracker.html', active_window=active_window)
+    return render_template('bug-tracker.html', active_window=active_window, bugs=bugs)
 
 
 @app.route('/bug-tracker/new-bug')
@@ -175,14 +201,15 @@ def new_bug():
 @app.route('/bug-tracker/')      #http://127.0.0.1:4995/bug-tracker/new-bug?project=value&description=value
 def post_bug():
     # Retrieve attributes out of http request
-    project_name = request.args.get('project_id')
+    project_name = request.args.get('project_name')
     description = request.args.get('description')
     issue_type = request.args.get('issue_type')
     summary = request.args.get('summary')
 
     # Create a Bug and save to database
     # TODO: Currently sending project_id=project_name... Needs to be changed in bug class to check for project name
-    bug = Bug(project_id=project_name, description=description, issue_type=issue_type, summary=summary)
+    project_id=Bug.get_project_id(project_name=project_name)
+    bug = Bug(project_id=project_id, description=description, issue_type=issue_type, summary=summary)
     bug.save_to_db()
 
     return redirect(url_for('bug_tracker'))
