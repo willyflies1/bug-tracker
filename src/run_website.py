@@ -200,6 +200,13 @@ def new_bug():
 
 @app.route('/bug-tracker/')      #http://127.0.0.1:4995/bug-tracker/new-bug?project=value&description=value
 def post_bug():
+    """
+    Working.
+    Reads in form data in the form of GET,(TODO: make this POST)
+    Sends bug to database to be stored.
+
+    :return: None
+    """
     # Retrieve attributes out of http request
     project_name = request.args.get('project_name')
     description = request.args.get('description')
@@ -207,7 +214,7 @@ def post_bug():
     summary = request.args.get('summary')
 
     # Create a Bug and save to database
-    # TODO: Currently sending project_id=project_name... Needs to be changed in bug class to check for project name
+    # TODO: Currently sending project_id==project_name... Needs to be changed in bug class to check for project name
     project_id=Bug.get_project_id(project_name=project_name)
     bug = Bug(project_id=project_id, description=description, issue_type=issue_type, summary=summary)
     bug.save_to_db()

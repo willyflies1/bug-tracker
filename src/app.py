@@ -13,13 +13,17 @@ Database.initialise(database="learning", host="localhost", user="postgres", pass
 
 # projects = Project.get_projects_for_user('Hunter')
 # print(projects)
-user_name = 'Hunter'
-bugs = Bug.get_bugs_by_user(user_name=user_name)
-for project in bugs.keys():
-    print('--------------------------------------------')
-    print(project)
-    print('--------------------------------------------')
-    for bug in bugs[project]:
-        print(bug)
+# user_name = 'Hunter'
+# bugs = Bug.get_bugs_by_user(user_name=user_name)
+project_name = 'Example'
+project_id=Bug.get_project_id(project_name=project_name)
+print(project_id)
+# for project in bugs.keys():
+#     print('--------------------------------------------')
+#     print(project)
+#     print('--------------------------------------------')
+#     for bug in bugs[project]:
+#         print(bug)
 
-# Project.delete_from_db('example')
+# print by project
+
