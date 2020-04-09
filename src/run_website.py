@@ -174,10 +174,10 @@ def save_project():
 @app.route('/bug-tracker', methods=['GET', 'POST'])
 def bug_tracker():
     active_window = 'bug-tracker'
-    # TODO: possibly use WTF forms to display form. If user has projects -> display projects and bugs
-    # TODO: If user does not have projects -> "Would you like to add a project?"
 
+    # Possibly redundat
     user_name = g.user.screen_name
+
     if user_name:
         bugs = Bug.get_bugs_by_user(user_name=user_name)
 
