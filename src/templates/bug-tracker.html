@@ -10,16 +10,24 @@
   </div>
   <div class="container" id="grid-container">
     <div class="row-md-4 form-group" id="project-grid">
-      <label for="project">Choose a Project</label>
-      <select class="custom-select" id="project" name="project">
-        <option selected>Project</option>
-        {% for project in bugs.keys() %}
-          <option>{{ project }}</option>
-        {% endfor %}
-      </select>
+      <div class="col-md-4">
+        <form id="project-tracker-form" action="{{ url_for('bug_tracker') }}" method="POST" enctype="multipart/form-data">
+          <label for="project">Choose a Project</label>
+          <select class="custom-select" id="project" name="project">
+            <option selected>Project</option>
+            {% for project in bugs.keys() %}
+              <option>{{ project }}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
     </div>
     <div class="row">
-      <div class="col-md-9" id="bug-grid">
+      <div class="col-md-12" id="bug-grid">
+        <div class="section-title">
+          <h2>{{ project }}</h2>
+        </div>
         <div class="row">
           <div class="col-md-1">ID</div>
           <div class="col-md-1">Project</div>
@@ -30,17 +38,15 @@
         </div>
 <!--        TODO: After adding 'create a project' for a user, make this functional -->
 <!--        (id[0], project_id[2], issue_type, summary, description[4], priority, created_on[7], solution[6], answered_on[8])-->
-        {% for project in bugs %}
-          {% for bug in bugs[project] %}
-          <div class="row">
-            <div class="col-md-1">ID</div>
-            <div class="col-md-1">{{ project }}</div>
-            <div class="col-md-4">Description</div>
-            <div class="col-md-4">Solution</div>
-            <div class="col-md-1">Date Created</div>
-            <div class="col-md-1">Date Solved</div>
-          </div>
-          {% endfor %}
+        {% for bug in project_bugs %}
+        <div class="row">
+          <div class="col-md-1">{{ bug.id }}</div>
+          <div class="col-md-1">{{ project }}</div>
+          <div class="col-md-4">{{ bug.description }}</div>
+          <div class="col-md-4">{{ bug.solution }}</div>
+          <div class="col-md-1">{{ bug.created_on | datetimefilter}}</div>
+          <div class="col-md-1">{{ bug.answered_on }}</div>
+        </div>
         {% endfor %}
       </div>
     </div>

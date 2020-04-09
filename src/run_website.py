@@ -58,6 +58,12 @@ def load_user():
         print('screen_name: {}, is in session'.format(session['screen_name']))
         g.user = User.load_db_by_screen_name(session['screen_name'])
         print('g.user.screen_name: {}'.format(g.user.screen_name))
+    # elif 'request_token' in session:
+    #     request_token = get_request_token()
+    #     print('request_token is in session, redirecting to twitter oauth')
+    #     session['request_token'] = request_token
+    #     return redirect(get_oauth_verifier_url(request_token))
+
     print('--------------------screen_name was not in session')
 
 
@@ -91,7 +97,6 @@ def twitter_login():
     # Check to see if they are already logged in, and redirect to their profile
     if 'screen_name' in session:
         return redirect(url_for('profile'))
-        print('screen_name is in session. Should go to profile')
 
     # We need a request token 1st...
     request_token = get_request_token()
@@ -165,28 +170,30 @@ def save_project():
 
     return render_template('bug-tracker.html', active_window=active_window)
 
-@app.route('/bug-tracker')
+
+@app.route('/bug-tracker', methods=['GET', 'POST'])
 def bug_tracker():
     active_window = 'bug-tracker'
-
     # TODO: possibly use WTF forms to display form. If user has projects -> display projects and bugs
     # TODO: If user does not have projects -> "Would you like to add a project?"
-    """
-    <div class="row">
-              <div class="col-md-1">{{ bug[0] }}</div>
-              <div class="col-md-1">{{ project }}</div>
-              <div class="col-md-4">{{ bug[4] }}</div>
-              <div class="col-md-4">{{ bug[6] }}</div>
-              <div class="col-md-1">{{ bug[7] | datetimefilter }}</div>
-              <div class="col-md-1">{{ bug[8] | datetimefilter if bug[8] else bug[8] }}</div>
-            </div>
-    
-    """
 
     user_name = g.user.screen_name
     if user_name:
         bugs = Bug.get_bugs_by_user(user_name=user_name)
-    # bugs = Bug.load_bug_from_db()
+
+    """ Pull up bugs for a project once project is submitted """
+    if request.method == 'POST':
+        project = request.form.get("project", None)             # Name of project selected from form
+        project_bugs = bugs[project]                            # Bugs to selected project
+
+        # Test to see if project_bugs is really what we say it is...
+        # for bug in project_bugs:
+        #     print('Summary: {}'.format(bug[3]))
+
+        if project:
+            return render_template('bug-tracker.html', active_window=active_window,
+                                   project_bugs=project_bugs, project=project, bugs=bugs)
+        pass
 
     return render_template('bug-tracker.html', active_window=active_window, bugs=bugs)
 
