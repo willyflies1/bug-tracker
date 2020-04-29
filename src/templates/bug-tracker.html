@@ -11,7 +11,7 @@
   <div class="container" id="grid-container">
     <div class="row-md-4 form-group" id="project-grid">
       <div class="col-md-4">
-        <form id="project-tracker-form" action="{{ url_for('bug_tracker') }}" method="POST" enctype="multipart/form-data">
+        <form id="project-tracker-form" action="{{ url_for('bugtracker.bug_tracker') }}" method="POST" enctype="multipart/form-data">
           <label for="project">Choose a Project</label>
           <select class="custom-select" id="project" name="project">
             <option selected>Project</option>
@@ -56,13 +56,13 @@
       <div class="col-md-3">
         <h2 align="center">Submit a Bug</h2>
         <div align="center">
-          <a href="{{ url_for('new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+          <a href="{{ url_for('bugtracker.new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
         </div>
       </div>
       <div class="col-md-3">
         <h2 align="center">Submit a Solution</h2>
         <div align="center">
-          <a href="{{ url_for('solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+          <a href="{{ url_for('bugtracker.solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
         </div>
       </div>
     </div>

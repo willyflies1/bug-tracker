@@ -39,21 +39,21 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1><a href="{{ url_for('home') }}">Files Technology</a></h1>
+        <h1><a href="{{ url_for('main.home') }}">Files Technology</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="{{ 'active' if active_window=='home' }}"><a href="{{ url_for('home') }}">Home</a></li>
-          <li class="{{ 'active' if active_window=='profile' }}"><a href="{{ url_for('profile') }}">Profile</a></li>
-          <li class="{{ 'active' if active_window=='login' }}"><a href="{{ url_for('twitter_login') }}">Login</a></li>
+          <li class="{{ 'active' if active_window=='home' }}"><a href="{{ url_for('main.home') }}">Home</a></li>
+          <li class="{{ 'active' if active_window=='profile' }}"><a href="{{ url_for('users.profile') }}">Profile</a></li>
+          <li class="{{ 'active' if active_window=='login' }}"><a href="{{ url_for('users.twitter_login') }}">Login</a></li>
           <li><a href="#services">Services</a></li>
-          <li class="drop-down {{ 'active' if active_window=='bug-tracker' }}"><a href="{{ url_for('bug_tracker') }}">Bug Tracker</a>
+          <li class="drop-down {{ 'active' if active_window=='bug-tracker' }}"><a href="{{ url_for('bugtracker.bug_tracker') }}">Bug Tracker</a>
             <ul>
-              <li class="{{ 'active' if active_window=='new-bug' }}"><a href="{{ url_for('new_bug') }}">New Bug</a></li>
-              <li class="{{ 'active' if active_window=='solve-bug' }}"><a href="{{ url_for('solve_bug') }}">Solve Bug</a></li>
-              <li class="{{ 'active' if active_window=='create-project' }}"><a href="{{ url_for('create_project') }}">Create Project</a></li>
+              <li class="{{ 'active' if active_window=='new-bug' }}"><a href="{{ url_for('bugtracker.new_bug') }}">New Bug</a></li>
+              <li class="{{ 'active' if active_window=='solve-bug' }}"><a href="{{ url_for('bugtracker.solve_bug') }}">Solve Bug</a></li>
+              <li class="{{ 'active' if active_window=='create-project' }}"><a href="{{ url_for('bugtracker.create_project') }}">Create Project</a></li>
             </ul>
           </li>
         </ul>

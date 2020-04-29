@@ -19,24 +19,24 @@
       <div class="col-md-3">
         <h2 align="center">Create a Project</h2>
         <div align="center">
-          <a href="{{ url_for('create_project') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Lets go</a>
+          <a href="{{ url_for('bugtracker.create_project') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Lets go</a>
         </div>
       </div>
       <div class="col-md-3">
         <h2 align="center">Submit a Bug</h2>
         <div align="center">
-          <a href="{{ url_for('new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+          <a href="{{ url_for('bugtracker.new_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
         </div>
       </div>
       <div class="col-md-3">
         <h2 align="center">Submit a Solution</h2>
         <div align="center">
-          <a href="{{ url_for('solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+          <a href="{{ url_for('bugtracker.solve_bug') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
         </div>
       </div>
     </div>
   </div>
-<!--    <form action="{{ url_for('search') }}">-->
+<!--    <form action="{{ url_for('main.search') }}">-->
 <!--        <label for="q">Twitter Search</label>-->
 <!--        <input type="text" name="q" id="q" placeholder="Your twitter search">-->
 <!--        <button type="submit">Search</button>-->
