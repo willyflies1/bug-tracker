@@ -107,9 +107,16 @@ def post_bug():
 def solve_bug():
     active_window = 'solve-bug'
 
-    # Get all bugs to populate select bar with project_id names for user options
-    bugs = Bug.load_bugs_from_db()
+    if session['project_id']:
+        # user = session['screen_name']
 
+        # Get all bugs to populate select bar with project_id names for user options
+        bugs = Bug.load_bugs_from_db(session['project_id'])
+
+        return render_template('solve-bug.html', active_window=active_window, bugs=bugs)
+
+    # Test for projec id=5 == project_name=Website
+    bugs = Bug.load_bugs_from_db(5)
 
     return render_template('solve-bug.html', active_window=active_window, bugs=bugs)
 

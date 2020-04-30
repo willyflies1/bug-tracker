@@ -1584,3 +1584,14 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+/*--------------------------------------------------------------
+# Errors
+--------------------------------------------------------------*/
+.errors .container {
+    padding: 30px 20px 30px;
+}
+
+.errors .section-title {
+    padding-top: 100px;
+}

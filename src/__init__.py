@@ -33,10 +33,12 @@ def create_app(config_class=Config):
         from src.main.routes import main
         from src.users.routes import users
         from src.bugtracker.routes import bugtracker
+        from src.errors.handlers import errors
 
         # Register Blueprints
         app.register_blueprint(main)
         app.register_blueprint(users)
         app.register_blueprint(bugtracker)
+        app.register_blueprint(errors)
 
     return app
