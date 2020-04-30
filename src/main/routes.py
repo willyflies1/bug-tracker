@@ -4,7 +4,7 @@ import pytz
 import requests
 from flask import Blueprint, session, current_app, render_template, request, g
 
-from src.user import User
+from src.api.user import User
 
 main = Blueprint('main', __name__)
 

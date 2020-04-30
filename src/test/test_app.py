@@ -1,6 +1,6 @@
 import unittest
-from src.bug import Bug
-from src.database import Database
+from src.api.bug import Bug
+from src.api.database import Database
 
 
 class ExceptionTestCase(unittest.TestCase):

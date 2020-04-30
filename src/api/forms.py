@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
-from src.bug import Bug
+from src.api.bug import Bug
 
 
 class ChooseProject(FlaskForm, user_name):

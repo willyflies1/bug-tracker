@@ -1,6 +1,6 @@
-from src.database import CursorFromConnectionFromPool
+from src.api.database import CursorFromConnectionFromPool
 from datetime import datetime
-from src.project import Project
+from src.api.project import Project
 
 
 class Bug:

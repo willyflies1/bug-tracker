@@ -1,5 +1,4 @@
-from src.database import CursorFromConnectionFromPool
-from datetime import datetime
+from src.api.database import CursorFromConnectionFromPool
 
 
 class Project:

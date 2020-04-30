@@ -1,7 +1,5 @@
-import os
-from src.database import Database
-from src.bug import Bug
-from src.project import Project
+from src.api.database import Database
+from src.api.bug import Bug
 
 Database.initialise(database="learning", host="localhost", user="postgres", password="NightKingSusano7")
 

@@ -1,8 +1,8 @@
 # Stores the class that we are modeling the users with
 import json
 import oauth2
-from src.twitter_utils import consumer
-from src.database import CursorFromConnectionFromPool
+from src.api.twitter_utils import consumer
+from src.api.database import CursorFromConnectionFromPool
 
 
 class User:

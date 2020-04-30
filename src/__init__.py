@@ -17,7 +17,7 @@
 from flask import Flask
 from src.config import Config
 
-from src.database import Database
+from src.api.database import Database
 
 # Database.initialise(database="learning", host="localhost", user="postgres", password="NightKingSusano7")
 

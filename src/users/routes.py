@@ -3,9 +3,8 @@ from datetime import timedelta
 from flask import Blueprint, session, redirect, url_for, request, render_template, current_app, g
 
 # from src. import get_request_token, get_oauth_verifier_url, get_access_token, User
-from src.main.routes import load_user, make_session_permanent
-from src.twitter_utils import get_request_token, get_oauth_verifier_url, get_access_token
-from src.user import User
+from src.api.twitter_utils import get_request_token, get_oauth_verifier_url, get_access_token
+from src.api.user import User
 
 users = Blueprint('users', __name__)
 

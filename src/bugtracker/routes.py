@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, g
 
 # from src import User, Project, Bug
-from src.bug import Bug
-from src.project import Project
-from src.user import User
+from src.api.bug import Bug
+from src.api.project import Project
+from src.api.user import User
 from src.main.routes import load_user, make_session_permanent
 
 bugtracker = Blueprint('bugtracker', __name__)
