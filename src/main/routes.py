@@ -27,7 +27,8 @@ def load_user():
         g.user = User.load_db_by_screen_name(session['screen_name'])
         print('g.user.screen_name: {}'.format(g.user.screen_name))
 
-    print('--------------------screen_name was not in session')
+    else:
+        print('--------------------screen_name was not in session')
 
 main.before_request(make_session_permanent)
 main.before_request(load_user)

@@ -106,16 +106,20 @@ def post_bug():
 @bugtracker.route('/bug-tracker/solve-bug')
 def solve_bug():
     active_window = 'solve-bug'
-
+    session['project_id'] = 5
     if session['project_id']:
         # user = session['screen_name']
 
         # Get all bugs to populate select bar with project_id names for user options
         bugs = Bug.load_bugs_from_db(session['project_id'])
+        if bugs:
+            print(bugs)
+        else:
+            print('No bugs were found')
 
         return render_template('solve-bug.html', active_window=active_window, bugs=bugs)
 
-    # Test for projec id=5 == project_name=Website
+    # Test for project id=5 == project_name=Website
     bugs = Bug.load_bugs_from_db(5)
 
     return render_template('solve-bug.html', active_window=active_window, bugs=bugs)
